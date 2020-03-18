@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.xyplayman</groupId>
+    <artifactId>jooq-code-gen</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>jooq-code-gen</name>
+    <description>根据数据库表生成jOOQ代码。</description>
+
+    <!-- 在这里修改数据库连接相关属性，例如用户名等 -->
+    <properties>
+        <db.url>jdbc:mysql://localhost:3306/demo</db.url>
+        <db.user>dbuser</db.user>
+        <db.password>dbpass</db.password>
+        <db.schema>demo</db.schema>
+        <package.name>org.xyplayman.demo.jooq</package.name>
+        <target.directory>target/generated-sources/jooq</target.directory>
+    </properties>
+
+    <build>
+        <plugins>
+
+            <!-- 使用jOOQ的代码生成插件 -->
+            <plugin>
+
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>3.13.1</version>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <dependencies>
+
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.19</version>
+                    </dependency>
+
+                    <!-- PostgreSQL -->
+                    <!--
+                        <dependency>
+                          <groupId>org.postgresql</groupId>
+                          <artifactId>postgresql</artifactId>
+                          <version>42.2.10</version>
+                        </dependency>
+                    -->
+                </dependencies>
+
+                <configuration>
+                    <!-- JDBC连接参数 -->
+                    <jdbc>
+                        <url>${db.url}</url>
+                        <user>${db.user}</user>
+                        <password>${db.password}</password>
+                    </jdbc>
+
+                    <generator>
+                        <database>
+                            <name>org.jooq.meta.mysql.MySQLDatabase</name>
+                            <!-- PostgreSQL -->
+                            <!-- <name>org.jooq.meta.postgres.PostgresDatabase</name> -->
+                            <includes>.*</includes>
+                            <excludes></excludes>
+                            <inputSchema>${db.schema}</inputSchema>
+                        </database>
+                        <target>
+                            <packageName>${package.name}</packageName>
+                            <directory>${target.directory}</directory>
+                        </target>
+                    </generator>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
