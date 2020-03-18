@@ -62,3 +62,5 @@ pom.xml默认使用的数据库是MySQL。如果项目中使用的数据库是My
 ```shell
 mvn jooq-codegen:generate
 ```
+## 使用
+在target目录下找到生成的代码，将代码（包括相关的package目录）复制到实际项目的java目录下。请注意，不要手动修改这些代码！如果改变了数据库的结构，那么要再次生成，重新复制。
