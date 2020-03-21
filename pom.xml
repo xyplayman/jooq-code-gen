@@ -10,11 +10,19 @@
     <name>jooq-code-gen</name>
     <description>根据数据库表生成jOOQ代码。</description>
 
+    <!-- 引用Spring Boot的parent配置 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.5.RELEASE</version>
+        <relativePath/>
+    </parent>
+
     <!-- 在这里修改数据库连接相关属性，例如用户名等 -->
     <properties>
         <db.url>jdbc:mysql://localhost:3306/demo</db.url>
-        <db.user>dbuser</db.user>
-        <db.password>dbpass</db.password>
+        <db.user>root</db.user>
+        <db.password>root@L3306</db.password>
         <db.schema>demo</db.schema>
         <package.name>org.xyplayman.demo.jooq</package.name>
         <target.directory>target/generated-sources/jooq</target.directory>
@@ -28,7 +36,6 @@
 
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen-maven</artifactId>
-                <version>3.13.1</version>
 
                 <executions>
                     <execution>
@@ -43,7 +50,7 @@
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.19</version>
+                        <version>${mysql.version}</version>
                     </dependency>
 
                     <!-- PostgreSQL -->
@@ -51,7 +58,7 @@
                         <dependency>
                           <groupId>org.postgresql</groupId>
                           <artifactId>postgresql</artifactId>
-                          <version>42.2.10</version>
+                          <version>${postgresql.version}</version>
                         </dependency>
                     -->
                 </dependencies>
