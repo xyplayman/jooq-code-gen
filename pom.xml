@@ -21,8 +21,8 @@
     <!-- 在这里修改数据库连接相关属性，例如用户名等 -->
     <properties>
         <db.url>jdbc:mysql://localhost:3306/demo</db.url>
-        <db.user>root</db.user>
-        <db.password>root@L3306</db.password>
+        <db.user>dbuser</db.user>
+        <db.password>dbpass</db.password>
         <db.schema>demo</db.schema>
         <package.name>org.xyplayman.demo.jooq</package.name>
         <target.directory>target/generated-sources/jooq</target.directory>
